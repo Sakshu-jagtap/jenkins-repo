@@ -4,7 +4,7 @@ pipeline {
         stage('Pull') {
             steps {
                 echo "Successful pull from Git"
-                git 'https://github.com/deepak-umre/jenkins-pipline-with-docker-k8.git'
+                git 'https://github.com/Sakshu-jagtap/jenkins-repo.git'
             }
         }
         stage('Build') {
@@ -16,10 +16,10 @@ pipeline {
         stage('creating tomcat image Tomcat') {
             steps {
                 script {
-                    sh '''cp -r /var/lib/jenkins/workspace/deploy/target/*.war .
-                    docker build -t deepakumre/tomcat1 . 
+                    sh '''cp -r /var/lib/jenkins/workspace/demo/target/*.war .
+                    docker build -t  sakshijagtap457647/tomcat-1 . 
                     docker login 
-                    docker push deepakumre/tomcat1'''
+                    docker push sakshijagtap457647/tomcat-1'''
                 }
             }
         }
@@ -36,7 +36,7 @@ pipeline {
                     sh '''kubectl get pods -o wide 
                     kubectl get nodes -o wide 
                     kubectl get svc -o wide 
-                    ls /var/lib/jenkins/workspace/deploy/target/'''
+                    ls /var/lib/jenkins/workspace/demo/target/'''
                 }
             }
         }
